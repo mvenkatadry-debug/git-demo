@@ -1,5 +1,5 @@
 name: First Workflow -->Name of the workflow
-on: workflow_dispatch -.>manual action
+on: workflow_dispatch -.>manual action when u add this it will show a button to run the workflow
 jobs: --->jobs
   first-job: -->name of the job
     runs-on: ubuntu-latest-->on which runner it ha sto run
