@@ -22,3 +22,8 @@ run: |
     echo "First output"
     echo "Second output"
 This will run both commands in one step.
+
+
+To use actions
+uses: <action nane>
+suppose checkout action
