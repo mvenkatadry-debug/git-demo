@@ -27,3 +27,19 @@ This will run both commands in one step.
 To use actions
 uses: <action nane>
 suppose checkout action
+
+
+When the workflow runs, actions/checkout@v3:
+• Clones the repository into the runner workspace.
+• Checks out the commit/branch that triggered the workflow.
+• Makes the code available for build, test, lint, and deployment steps.
+
+Why it's needed
+Without actions/checkout, the runner generally does not have your repository files available, so commands like:
+ls
+npm install
+mvn test
+dotnet build
+
+would not find your project source code
+
