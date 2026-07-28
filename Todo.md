@@ -2,3 +2,4 @@
 2. .gitignore in real time
 3. github.event
 4. how authentication works
+5. check artifacts. example uploading docker image during build
