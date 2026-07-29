@@ -6,3 +6,5 @@
 6. 6 export path in linux
 7 for docker check what pks need to be installed for node.js,springboot ..other
 github actions context- https://docs.github.com/en/actions/reference/workflows-and-actions/contexts
+
+8 reading the logs in work flows
