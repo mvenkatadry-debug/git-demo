@@ -3,12 +3,12 @@
 3. github.event
 4. how authentication works
 5. check artifacts. example uploading docker image during build
-6. export path in linux
-7. for docker check what pks need to be installed for node.js, springboot, and other
+6. 6 export path in linux
+7 for docker check what pks need to be installed for node.js,springboot ..other
 github actions context- https://docs.github.com/en/actions/reference/workflows-and-actions/contexts
 
-8. reading the logs in workflows
-9. github context https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context
+8 reading the logs in work flows
+9. github conext https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context
 
 
 for Node.js application
@@ -21,47 +21,76 @@ my-app/
 └── Dockerfile
 
 
+Step 2: What's inside this image?
+
+After Docker builds this image:
+
 FROM node:22
-
 WORKDIR /app
-
 COPY . .
-
 RUN npm install
-
 RUN npm run build
-
 CMD ["npm", "start"]
 
-**Step 2:** What's inside this image?
+the image typically contains:
 
-After the build finishes, your image contains
-
-Operating System
+Operating System (Debian/Bookworm)
 Node.js
 npm
+Your application source code
 package.json
+package-lock.json (if present)
 node_modules
-Source Code
-Build Tools
-Compiled Files
-Temporary Files
+Compiled build output (e.g., dist/ or build/)
+npm cache (unless cleaned)
+Application configuration files
 
-Everything.
-
-Even things you no longer need.
-
+If your project uses build tools, they are also included because npm install installs all dependencies by default (unless you explicitly install only production dependencies).
 For example:
+TypeScript
+Webpack
+Vite
+Babel
+ESLint
+Jest
+React
+Angular CLI
+Nest CLI
+Development dependencies
 
+These tools are required to build the application, but they are usually not needed to run it in production.
+So your final image contains:
+
+✓ Operating System
+✓ Node.js
+✓ npm
+✓ Source code
+✓ node_modules
+✓ Build output (dist/, build/, etc.)
+✓ Build tools (if installed)
+✓ Development dependencies (unless excluded)
+✓ Temporary files and npm cache (unless removed)
+
+**Why is this a problem?**
+Imagine your application only needs this to run:
+
+Node.js
+dist/
+Production dependencies
+
+But your image also contains:
 TypeScript compiler
 Webpack
 ESLint
-Testing libraries
+Jest
+Source code
+npm cache
+Development dependencies
 
-These were only needed during the build.
+
 
 But they stay forever.
-https://docs.docker.com/get-started/docker-concepts/building-images/multi-stage-builds/?utm_source=chatgpt.com
+**Multistage builds Doc:** https://docs.docker.com/get-started/docker-concepts/building-images/multi-stage-builds/?utm_source=chatgpt.com
 
 | Files you see      | Project type | Build image  |
 | ------------------ | ------------ | ------------ |
@@ -138,4 +167,8 @@ which npm
 check the operating system:cat /etc/os-release
 List installed Debian packages::dpkg -l
 inspect the available commands:ls /usr/local/bin
+To install any commands in container:
+#RUN apt-get update && \
+    apt-get install -y curl
+
 
