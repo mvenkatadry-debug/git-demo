@@ -182,3 +182,35 @@ To install any commands in container:
     apt-get install -y curl
 
 
+---
+How to Identify Environment Variables
+Based on your codebase analysis, here's what I found:
+
+In frontend/src/App.jsx (line 13):
+
+JavaScript
+const API_URL = import.meta.env.VITE_API_URL || ''
+This is a Vite environment variable (Vite uses the VITE_ prefix). Your Dockerfile correctly captures it:
+
+Dockerfile
+ARG VITE_API_URL=""
+ENV VITE_API_URL=$VITE_API_URL
+Discovery Methods for DevOps Engineers
+Here's how you systematically find all environment variables:
+
+1. Search the codebase for environment variable patterns:
+import.meta.env.* (Vite)
+process.env.* (Node.js/React)
+REACT_APP_* (Create React App pattern)
+2. Check configuration files:
+vite.config.js / vite.config.ts
+.env, .env.example, .env.production
+package.json (build scripts)
+3. Review source code entry points:
+Look at src/App.jsx, src/main.jsx
+Search API/backend configuration files
+Check for axios/fetch base URLs
+4. Documentation:
+README.md
+.github/workflows/ (CI/CD configs often reveal required vars)
+Docker compose files
