@@ -200,22 +200,41 @@ ENV VITE_API_URL=$VITE_API_URL
 Discovery Methods for DevOps Engineers
 Here's how you systematically find all environment variables:
 
-1. Search the codebase for environment variable patterns:
-import.meta.env.* (Vite)
-process.env.* (Node.js/React)
-REACT_APP_* (Create React App pattern)
-2. Check configuration files:
-vite.config.js / vite.config.ts
-.env, .env.example, .env.production
-package.json (build scripts)
-3. Review source code entry points:
-Look at src/App.jsx, src/main.jsx
-Search API/backend configuration files
-Check for axios/fetch base URLs
-4. Documentation:
-README.md
-.github/workflows/ (CI/CD configs often reveal required vars)
-Docker compose files
+**How to Identify Environment Variables Before Writing a Dockerfile**
+1. Search the codebase for environment variable usage
+
+This tells you which variables the application actually expects.
+```
+import.meta.env.      (Vite)
+process.env.          (Node.js)
+process.env.REACT_APP_ (Create React App)
+process.env.NEXT_PUBLIC_ (Next.js frontend)
+process.env.          (Next.js backend)
+```
+**2. Check for environment files**
+
+These files usually document the required variables.
+
+Look for:
+```
+.env
+.env.local
+.env.development
+.env.production
+.env.example
+```
+**4. Review the application's entry points**
+Start with files such as:
+```
+src/main.jsx
+src/App.jsx
+server.js
+index.js
+app.js
+main.ts
+```
+
+
 
 --
 No, not every ENV needs an ARG. Let me clarify when you need each:
