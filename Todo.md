@@ -36,7 +36,7 @@ CMD ["npm", "start"]
 ```
 
 the image typically contains:
-
+```
 Operating System (Debian/Bookworm)
 Node.js
 npm
@@ -47,9 +47,11 @@ node_modules
 Compiled build output (e.g., dist/ or build/)
 npm cache (unless cleaned)
 Application configuration files
+```
 
 If your project uses build tools, they are also included because npm install installs all dependencies by default (unless you explicitly install only production dependencies).
 For example:
+```
 TypeScript
 Webpack
 Vite
@@ -60,10 +62,10 @@ React
 Angular CLI
 Nest CLI
 Development dependencies
-
+```
 These tools are required to build the application, but they are usually not needed to run it in production.
 So your final image contains:
-
+```
 ✓ Operating System
 ✓ Node.js
 ✓ npm
@@ -73,7 +75,7 @@ So your final image contains:
 ✓ Build tools (if installed)
 ✓ Development dependencies (unless excluded)
 ✓ Temporary files and npm cache (unless removed)
-
+```
 **Why is this a problem?**
 Imagine your application only needs this to run:
 
