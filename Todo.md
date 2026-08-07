@@ -189,7 +189,9 @@ Based on your codebase analysis, here's what I found:
 In frontend/src/App.jsx (line 13):
 
 JavaScript
+```
 const API_URL = import.meta.env.VITE_API_URL || ''
+```
 This is a Vite environment variable (Vite uses the VITE_ prefix). Your Dockerfile correctly captures it:
 
 Dockerfile
@@ -214,3 +216,20 @@ Check for axios/fetch base URLs
 README.md
 .github/workflows/ (CI/CD configs often reveal required vars)
 Docker compose files
+
+--
+No, not every ENV needs an ARG. Let me clarify when you need each:
+
+ARG vs ENV - Key Differences
+```
+Aspect	ARG	ENV
+| Feature                                  | `ARG`                                                      | `ENV`          |
+| ---------------------------------------- | ---------------------------------------------------------- | -------------- |
+| Available during image build?            | ✅ Yes                                                      | ✅ Yes          |
+| Available when the container runs?       | ❌ No                                                       | ✅ Yes          |
+| Can be overridden during `docker build`? | ✅ Yes (`--build-arg`)                                      | ❌ Not directly |
+| Can be overridden during `docker run`?   | ❌ No                                                       | ✅ Yes (`-e`)   |
+| Stored in the final image?               | ❌ Generally not available as runtime environment variables | ✅ Yes          |
+
+
+```
