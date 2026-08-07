@@ -13,12 +13,14 @@ github actions context- https://docs.github.com/en/actions/reference/workflows-a
 
 for Node.js application
 ---
-```my-app/
+```
+my-app/
 │
 ├── package.json
 ├── package-lock.json
 ├── src/
-└── Dockerfile```
+└── Dockerfile
+```
 
 
 Step 2: What's inside this image?
