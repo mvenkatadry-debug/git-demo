@@ -108,6 +108,7 @@ But they stay forever.
 | `composer.json`    | PHP          | `php:...`    |
 
 **For Node.js
+Project Reference:https://github.com/mvenkatadry-debug/shopverse-project/blob/main/frontend/Dockerfile
 Step 2: Find the build command**
 
 Look in package.json.
