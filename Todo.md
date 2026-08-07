@@ -3,12 +3,12 @@
 3. github.event
 4. how authentication works
 5. check artifacts. example uploading docker image during build
-6. 6 export path in linux
-7 for docker check what pks need to be installed for node.js,springboot ..other
+6. export path in linux
+7. for docker check what pks need to be installed for node.js, springboot, and other
 github actions context- https://docs.github.com/en/actions/reference/workflows-and-actions/contexts
 
-8 reading the logs in work flows
-9. github conext https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context
+8. reading the logs in workflows
+9. github context https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context
 
 
 for Node.js application
@@ -138,6 +138,4 @@ which npm
 check the operating system:cat /etc/os-release
 List installed Debian packages::dpkg -l
 inspect the available commands:ls /usr/local/bin
-
-
 
