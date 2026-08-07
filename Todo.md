@@ -26,13 +26,14 @@ my-app/
 Step 2: What's inside this image?
 
 After Docker builds this image:
-
+```
 FROM node:22
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build
 CMD ["npm", "start"]
+```
 
 the image typically contains:
 
@@ -108,7 +109,7 @@ But they stay forever.
 Step 2: Find the build command**
 
 Look in package.json.
-
+```
 Example:
 {
   "scripts": {
@@ -116,15 +117,17 @@ Example:
     "start": "node dist/index.js"
   }
 }
+```
 
 OR
-
+```
 {
   "scripts": {
     "build": "vite build",
     "start": "node server.js"
   }
 }
+```
 
 Then
 npm run build
